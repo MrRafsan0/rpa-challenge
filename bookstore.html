@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!-- Webpage generated with Claude.ai and images from Leonardo.ai -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPA Super Bookstore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            max-width: 1200px;
+            margin: 0 auto 20px auto;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .sort-select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        
+        .books-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .book-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .book-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .book-image {
+            width: 100%;
+            height: 400px;
+            background-color: #ecf0f1;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .book-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .book-item:hover .book-image img {
+            transform: scale(1.05);
+        }
+        
+        .book-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+        
+        .book-author {
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        
+        .book-price {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.2em;
+            margin-top: auto;
+            padding-top: 10px;
+        }
+
+        .book-rating {
+            color: #f39c12;
+            margin: 10px 0;
+        }
+        
+        .book-description {
+            font-size: 0.9em;
+            color: #666;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+
+        .add-to-cart {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        .add-to-cart:hover {
+            background-color: #34495e;
+        }
+
+        .cart-count {
+            background-color: #e74c3c;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>RPA Super Bookstore</h1>
+        <p>Practice your RPA skills with our collection of books. <b>Disclaimer</b>: AI-generated content.</p>
+        <div id="cart-info">Cart Items: <span class="cart-count">0</span></div>
+    </div>
+
+    <div class="controls">
+        <input type="text" class="search-box" placeholder="Search books..." id="searchInput">
+        <select class="sort-select" id="sortSelect">
+            <option value="title">Sort by Title</option>
+            <option value="price">Sort by Price</option>
+            <option value="rating">Sort by Rating</option>
+        </select>
+    </div>
+    
+    <div class="books-container" id="booksContainer">
+        <div class="book-item">
+            <div class="book-image">
+                <img src="img/Leonardo_Anime_XL_represent_the_idea_of_robotic_process_automa_3.jpg" alt="The Art of Automation cover">
+            </div>
+            <div class="book-title">The Art of Automation</div>
+            <div class="book-author">By Sarah Johnson</div>
+            <div class="book-rating">★★★★★</div>
+            <div class="book-description">A comprehensive guide to modern automation techniques and best practices.</div>
+            <div class="book-price">$29.99</div>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        
+        <div class="book-item">
+            <div class="book-image">
+                <img src="img/AlbedoBase_XL_book_cover_about_automation_robots_and_technolog_0.jpg" alt="Python for Beginners cover">
+            </div>
+            <div class="book-title">Python for Beginners</div>
+            <div class="book-author">By Michael Chen</div>
+            <div class="book-rating">★★★★☆</div>
+            <div class="book-description">Start your programming journey with Python fundamentals and practical examples.</div>
+            <div class="book-price">$24.99</div>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        
+        <div class="book-item">
+            <div class="book-image">
+                <img src="img/AlbedoBase_XL_brazilian_macaw_2.jpg" alt="RPA in Practice cover">
+            </div>
+            <div class="book-title">RPA in Practice</div>
+            <div class="book-author">By David Miller</div>
+            <div class="book-rating">★★★★★</div>
+            <div class="book-description">Real-world applications of Robotic Process Automation in business.</div>
+            <div class="book-price">$34.99</div>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <div class="book-item">
+            <div class="book-image">
+                <img src="img/AlbedoBase_XL_book_cover_about_automation_robots_and_technolog_3.jpg" alt="Machine Learning Fundamentals cover">
+            </div>
+            <div class="book-title">Machine Learning Fundamentals</div>
+            <div class="book-author">By Maria Rodriguez</div>
+            <div class="book-rating">★★★☆☆</div>
+            <div class="book-description">A beginner-friendly introduction to machine learning concepts and practical applications.</div>
+            <div class="book-price">$39.99</div>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <div class="book-item">
+            <div class="book-image">
+                <img src="img/AlbedoBase_XL_book_cover_about_technology_and_physics_2.jpg" alt="Data Analysis Toolkit cover">
+            </div>
+            <div class="book-title">Data Analysis Toolkit</div>
+            <div class="book-author">By James Wilson</div>
+            <div class="book-rating">★☆☆☆☆</div>
+            <div class="book-description">Essential tools and techniques for modern data analysis and visualization.</div>
+            <div class="book-price">$27.99</div>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <div class="book-item">
+            <div class="book-image">
+                <img src="img/Leonardo_Anime_XL_represent_the_idea_of_robotic_process_automa_2.jpg" alt="Cloud Computing Essentials cover">
+            </div>
+            <div class="book-title">Cloud Computing Essentials</div>
+            <div class="book-author">By Lisa Chang</div>
+            <div class="book-rating">★★★★★</div>
+            <div class="book-description">Master cloud platforms and learn deployment strategies for modern applications.</div>
+            <div class="book-price">$36.99</div>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        let cartCount = 0;
+        
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                cartCount++;
+                document.querySelector('.cart-count').textContent = cartCount;
+                button.textContent = 'Added to Cart';
+                button.style.backgroundColor = '#27ae60';
+                setTimeout(() => {
+                    button.textContent = 'Add to Cart';
+                    button.style.backgroundColor = '#2c3e50';
+                }, 1000);
+            });
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.book-item').forEach(book => {
+                const title = book.querySelector('.book-title').textContent.toLowerCase();
+                const author = book.querySelector('.book-author').textContent.toLowerCase();
+                const visible = title.includes(searchTerm) || author.includes(searchTerm);
+                book.style.display = visible ? 'flex' : 'none';
+            });
+        });
+
+        // Sorting functionality
+        document.getElementById('sortSelect').addEventListener('change', (e) => {
+            const books = Array.from(document.querySelectorAll('.book-item'));
+            const container = document.getElementById('booksContainer');
+            
+            books.sort((a, b) => {
+                if (e.target.value === 'price') {
+                    const priceA = parseFloat(a.querySelector('.book-price').textContent.slice(1));
+                    const priceB = parseFloat(b.querySelector('.book-price').textContent.slice(1));
+                    return priceA - priceB;
+                } else if (e.target.value === 'rating') {
+                    const ratingA = a.querySelector('.book-rating').textContent.split('★').length - 1;
+                    const ratingB = b.querySelector('.book-rating').textContent.split('★').length - 1;
+                    return ratingB - ratingA;
+                } else {
+                    const titleA = a.querySelector('.book-title').textContent;
+                    const titleB = b.querySelector('.book-title').textContent;
+                    return titleA.localeCompare(titleB);
+                }
+            });
+            
+            books.forEach(book => container.appendChild(book));
+        });
+    </script>
+</body>
+</html>
