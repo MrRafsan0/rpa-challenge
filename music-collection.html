@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<!-- Webpage generated with Claude.ai and images from Leonardo.ai -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPA Music Collection Manager</title>
+    <style>
+        :root {
+            --primary-color: #f97316;
+            --primary-hover: #ea580c;
+            --secondary-color: #fb923c;
+            --background: #fffbf5;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #fee4d3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .banner {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 3rem 2rem;
+            margin: -2rem -2rem 2rem -2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.1);
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('img/AlbedoBase_XL_banner_for_a_music_collection_website_0.jpg');
+            background-repeat: ;
+            background-position: center;
+            background-size: 664px;
+            opacity: 0.5;
+        }
+
+        .banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .tooltiptext {
+            visibility: hidden;
+            opacity: 0;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            font-size: 0.875rem;
+            transition: opacity 0.3s;
+        }
+
+        .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        #summary {
+            background-color: #fff7ed;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        #formatSummary {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        #formatSummary li {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            margin: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #fff7ed;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #fff7ed;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+
+            .banner {
+                margin: -1rem -1rem 1rem -1rem;
+                padding: 2rem 1rem;
+            }
+
+            .banner h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>RPA Music Collection Manager</h1>
+        <p>Manage your music collection with ease. Track your albums, formats, and conditions in one place.</p>
+    </div>
+
+    <div class="container">
+        <!-- Login Section -->
+        <div id="loginSection" class="section">
+            <h2>Login to Music Collection</h2>
+            <div class="form-group tooltip">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+                <span class="tooltiptext">Default username: student</span>
+            </div>
+            <div class="form-group tooltip">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+                <span class="tooltiptext">Default password: rpa@hamk</span>
+            </div>
+            <button onclick="login()">Login</button>
+            <p id="loginError" class="error hidden">Invalid credentials</p>
+        </div>
+
+        <!-- Collection Management Section -->
+        <div id="collectionSection" class="section hidden">
+            <h2>Add to Collection</h2>
+            <div class="form-group tooltip">
+                <label for="artist">Artist</label>
+                <input type="text" id="artist" placeholder="Enter artist name">
+                <span class="tooltiptext">Enter the name of the musician or band</span>
+            </div>
+            <div class="form-group tooltip">
+                <label for="album">Album</label>
+                <input type="text" id="album" placeholder="Enter album name">
+                <span class="tooltiptext">Enter the title of the album</span>
+            </div>
+            <div class="form-group tooltip">
+                <label for="year">Release Year</label>
+                <input type="number" id="year" placeholder="Enter release year">
+                <span class="tooltiptext">Enter the year the album was released (e.g., 1999)</span>
+            </div>
+            <div class="form-group tooltip">
+                <label for="format">Format</label>
+                <select id="format">
+                    <option value="vinyl">Vinyl</option>
+                    <option value="cd">CD</option>
+                    <option value="cassette">Cassette</option>
+                    <option value="digital">Digital</option>
+                </select>
+                <span class="tooltiptext">Select the format of the music media</span>
+            </div>
+            <div class="form-group tooltip">
+                <label for="condition">Condition</label>
+                <select id="condition">
+                    <option value="mint">Mint</option>
+                    <option value="excellent">Excellent</option>
+                    <option value="good">Good</option>
+                    <option value="fair">Fair</option>
+                    <option value="poor">Poor</option>
+                </select>
+                <span class="tooltiptext">Select the physical condition of the media</span>
+            </div>
+            <button onclick="addItem()">Add to Collection</button>
+
+            <div id="summary">
+                <h2>Collection Summary</h2>
+                <p>Total Items: <span id="totalItems">0</span></p>
+                <p>Formats:</p>
+                <ul id="formatSummary"></ul>
+            </div>
+
+            <h2>Collection List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artist</th>
+                        <th>Album</th>
+                        <th>Year</th>
+                        <th>Format</th>
+                        <th>Condition</th>
+                    </tr>
+                </thead>
+                <tbody id="collectionTable">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript remains the same as before
+        const VALID_CREDENTIALS = {
+            username: 'student',
+            password: 'rpa@hamk'
+        };
+
+        let collection = [];
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === VALID_CREDENTIALS.username && 
+                password === VALID_CREDENTIALS.password) {
+                document.getElementById('loginSection').classList.add('hidden');
+                document.getElementById('collectionSection').classList.remove('hidden');
+                document.getElementById('loginError').classList.add('hidden');
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        }
+
+        function addItem() {
+            const artist = document.getElementById('artist').value;
+            const album = document.getElementById('album').value;
+            const year = document.getElementById('year').value;
+            const format = document.getElementById('format').value;
+            const condition = document.getElementById('condition').value;
+
+            if (!artist || !album || !year) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            const item = {
+                artist,
+                album,
+                year,
+                format,
+                condition
+            };
+
+            collection.push(item);
+            updateDisplay();
+            clearForm();
+        }
+
+        function updateDisplay() {
+            const table = document.getElementById('collectionTable');
+            table.innerHTML = collection.map(item => `
+                <tr>
+                    <td>${item.artist}</td>
+                    <td>${item.album}</td>
+                    <td>${item.year}</td>
+                    <td>${item.format}</td>
+                    <td>${item.condition}</td>
+                </tr>
+            `).join('');
+
+            document.getElementById('totalItems').textContent = collection.length;
+            
+            const formatCounts = collection.reduce((acc, item) => {
+                acc[item.format] = (acc[item.format] || 0) + 1;
+                return acc;
+            }, {});
+
+            const formatSummary = document.getElementById('formatSummary');
+            formatSummary.innerHTML = Object.entries(formatCounts)
+                .map(([format, count]) => `<li>${format}: ${count}</li>`)
+                .join('');
+        }
+
+        function clearForm() {
+            document.getElementById('artist').value = '';
+            document.getElementById('album').value = '';
+            document.getElementById('year').value = '';
+            document.getElementById('format').selectedIndex = 0;
+            document.getElementById('condition').selectedIndex = 0;
+        }
+    </script>
+</body>
+</html>
