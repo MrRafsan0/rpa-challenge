@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <!-- Webpage generated with Claude.ai and images from Leonardo.ai -->
+<!-- Bugs were introduced for students to practice test automation --> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -344,7 +345,7 @@
         // Lisää Ostoskoriin functionality
         document.querySelectorAll('.lisaa-ostoskoriin').forEach(button => {
             button.addEventListener('click', () => {
-                cartCount+=2; // BUG here
+                cartCount+=2; // BUG here: should be: cartCount+=1;
                 document.querySelector('.cart-count').textContent = cartCount;
                 button.textContent = 'Lisätty Ostoskoriin';
                 button.style.backgroundColor = '#27ae60';
@@ -361,7 +362,7 @@
             document.querySelectorAll('.esine').forEach(book => {
                 const title = book.querySelector('.kirjan-nimi').textContent.toLowerCase();
                 const author = book.querySelector('.kirjoittaja').textContent.toLowerCase();
-                const visible = title.includes(searchTerm) || author.includes(searchTerm);
+                const visible = title.includes(searchTerm) && author.includes(searchTerm); // BUG here: && instead of ||
                 book.style.display = visible ? 'flex' : 'none';
             });
         });
@@ -374,7 +375,7 @@
             books.sort((a, b) => {
                 if (e.target.value === 'price') {
                     const priceA = parseFloat(a.querySelector('.hinta').textContent.slice(1));
-                    const priceB = parseFloat(b.querySelector('.hinta').textContent.slice(1));
+                    const priceB = parseFloat(b.querySelector('.kirjan-nimi').textContent.slice(1)); // BUG here: should be .hinta
                     return priceA - priceB;
                 } else if (e.target.value === 'rating') {
                     const ratingA = a.querySelector('.arvosana').textContent.split('★').length - 1;
