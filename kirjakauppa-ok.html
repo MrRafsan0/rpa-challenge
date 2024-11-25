@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<!-- Webpage generated with Claude.ai and images from Leonardo.ai -->
+<!-- Bug-free version --> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPA Kirjakauppa OK</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #1980d9;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #d91980;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            max-width: 1200px;
+            margin: 0 auto 20px auto;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .sort-select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        
+        .books-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .esine {
+            background: #19d9d2;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .esine:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .kirjan-kuva {
+            width: 100%;
+            height: 400px;
+            background-color: #ecf0f1;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .kirjan-kuva img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .esine:hover .kirjan-kuva img {
+            transform: scale(1.05);
+        }
+        
+        .kirjan-nimi {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+        
+        .kirjoittaja {
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        
+        .hinta {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.2em;
+            margin-top: auto;
+            padding-top: 10px;
+        }
+
+        .arvosana {
+            color: #f39c12;
+            margin: 10px 0;
+        }
+        
+        .kuvaus {
+            font-size: 0.9em;
+            color: #666;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+
+        .lisaa-ostoskoriin {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        .lisaa-ostoskoriin:hover {
+            background-color: #34495e;
+        }
+
+        .cart-count {
+            background-color: #e74c3c;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>RPA Kirjakauppa OK</h1>
+        <p>Harjoittele RPA-taitojasi kirjakokoelmamme avulla. <b>Vastuuvapauslauseke: tekoälyn luoma sisältö.</b>
+        </p>    
+        <div id="cart-info">Ostoskorin tuotteet:: <span class="cart-count">0</span></div>
+    </div>
+
+    <div class="controls">
+        <input type="text" class="search-box" placeholder="Hae kirjoja..." id="searchInput">
+        <select class="sort-select" id="sortSelect">
+            <option value="title">Lajittele otsikon mukaan</option>
+            <option value="price">Lajittele hinnan mukaan</option>
+            <option value="rating">Lajittele luokituksen mukaan</option>
+        </select>
+    </div>
+    
+    <div class="books-container" id="booksContainer">
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/AlbedoBase_XL_brazilian_macaw_2.jpg" alt="RPA in Practice cover">
+            </div>
+            <div class="kirjan-nimi">RPA in Practice</div>
+            <div class="kirjoittaja">By Kush Miller</div>
+            <div class="arvosana">★★★★★</div>
+            <div class="kuvaus">Real-world applications of Robotic Process Automation in business.</div>
+            <div class="hinta">$14.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>
+
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/AlbedoBase_XL_book_cover_about_automation_robots_and_technolog_3.jpg" alt="Machine Learning Fundamentals cover">
+            </div>
+            <div class="kirjan-nimi">Machine Learning Fundamentals</div>
+            <div class="kirjoittaja">By Maria Rodriguez</div>
+            <div class="arvosana">★★★☆☆</div>
+            <div class="kuvaus">A beginner-friendly introduction to machine learning concepts and practical applications.</div>
+            <div class="hinta">$29.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>
+
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/Machine_Learning_for_Everyone.svg" alt="Machine Learning for Everyone cover">
+            </div>
+            <div class="kirjan-nimi">Machine Learning for Everyone</div>
+            <div class="kirjoittaja">By James Patel</div>
+            <div class="arvosana">★★★★☆</div>
+            <div class="kuvaus">Explore practical applications of machine learning in everyday tasks.</div>
+            <div class="hinta">$33.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>
+
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/Leonardo_Anime_XL_represent_the_idea_of_robotic_process_automa_3.jpg" alt="The Art of Automation cover">
+            </div>
+            <div class="kirjan-nimi">The Art of Automation</div>
+            <div class="kirjoittaja">By Sarah Johnson</div>
+            <div class="arvosana">★★★★★</div>
+            <div class="kuvaus">A comprehensive guide to modern automation techniques and best practices.</div>
+            <div class="hinta">$29.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>
+        
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/AlbedoBase_XL_book_cover_about_automation_robots_and_technolog_0.jpg" alt="Python for Beginners cover">
+            </div>
+            <div class="kirjan-nimi">Python for Beginners</div>
+            <div class="kirjoittaja">By Michael Chen</div>
+            <div class="arvosana">★★★★☆</div>
+            <div class="kuvaus">Start your programming journey with Python fundamentals and practical examples.</div>
+            <div class="hinta">$28.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>
+
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/AI_Foundations.svg" alt="AI Foundations cover">
+            </div>
+            <div class="kirjan-nimi">AI Foundations</div>
+            <div class="kirjoittaja">By Biswash Lane</div>
+            <div class="arvosana">★★★★★</div>
+            <div class="kuvaus">An introduction to AI concepts, history, and ethical considerations.</div>
+            <div class="hinta">$33.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>
+
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/AlbedoBase_XL_book_cover_about_technology_and_physics_2.jpg" alt="Data Analysis Toolkit cover">
+            </div>
+            <div class="kirjan-nimi">Data Analysis Toolkit</div>
+            <div class="kirjoittaja">By Md Wilson</div>
+            <div class="arvosana">★☆☆☆☆</div>
+            <div class="kuvaus">Essential tools and techniques for modern data analysis and visualization.</div>
+            <div class="hinta">$17.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>
+        
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/Soft_Skills.svg" alt="Soft Skills: The Software Developer's Life Manual">
+            </div>
+            <div class="kirjan-nimi">Soft Skills: The Software Developer's Life Manual</div>
+            <div class="kirjoittaja">By Emma Sonmez</div>
+            <div class="arvosana">★★★★☆</div>
+            <div class="kuvaus">Improve your career and life as a software developer.</div>
+            <div class="hinta">$29.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>  
+        
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/Leonardo_Anime_XL_represent_the_idea_of_robotic_process_automa_2.jpg" alt="Cloud Computing Essentials cover">
+            </div>
+            <div class="kirjan-nimi">Cloud Computing Essentials</div>
+            <div class="kirjoittaja">By He Chang</div>
+            <div class="arvosana">★★★★★</div>
+            <div class="kuvaus">Master cloud platforms and learn deployment strategies for modern applications.</div>
+            <div class="hinta">$42.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>
+
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/Data_Science_Mastery.svg" alt="Data Science Mastery cover">
+            </div>
+            <div class="kirjan-nimi">Data Science Mastery</div>
+            <div class="kirjoittaja">By Mark Islam</div>
+            <div class="arvosana">★★★★☆</div>
+            <div class="kuvaus">Learn how to analyze and interpret complex datasets with Python and R.</div>
+            <div class="hinta">$40.50</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>
+
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/Blockchain_Technology_Explained.svg" alt="Blockchain Technology Explained cover">
+            </div>
+            <div class="kirjan-nimi">Blockchain Technology Explained</div>
+            <div class="kirjoittaja">By Ethan Zhang</div>
+            <div class="arvosana">★★★★☆</div>
+            <div class="kuvaus">Understand blockchain systems, applications, and future potentials.</div>
+            <div class="hinta">$47.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>
+
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/Cybersecurity_Basics.svg" alt="Cybersecurity Basics cover">
+            </div>
+            <div class="kirjan-nimi">Cybersecurity Basics</div>
+            <div class="kirjoittaja">By Alicia Monroe</div>
+            <div class="arvosana">★★★☆☆</div>
+            <div class="kuvaus">A beginner's guide to protecting data in the digital age.</div>
+            <div class="hinta">$29.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>
+
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/Modern_Web_Development.svg" alt="Modern Web Development cover">
+            </div>
+            <div class="kirjan-nimi">Modern Web Development</div>
+            <div class="kirjoittaja">By Clara Torres</div>
+            <div class="arvosana">★★★★★</div>
+            <div class="kuvaus">A comprehensive guide to creating dynamic and responsive websites.</div>
+            <div class="hinta">$37.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>
+
+        <div class="esine">
+            <div class="kirjan-kuva">
+                <img src="img/Refactoring.svg" alt="Refactoring: Improving the Design of Existing Code">
+            </div>
+            <div class="kirjan-nimi">Refactoring: Improving the Design of Existing Code</div>
+            <div class="kirjoittaja">By Anuraj Fowler</div>
+            <div class="arvosana">★★★★☆</div>
+            <div class="kuvaus">A comprehensive guide to refactoring techniques and best practices.</div>
+            <div class="hinta">$39.99</div>
+            <button class="lisaa-ostoskoriin">Lisää Ostoskoriin</button>
+        </div>     
+    </div>
+
+    <script>
+        let cartCount = 0;
+        
+        // Lisää Ostoskoriin functionality
+        document.querySelectorAll('.lisaa-ostoskoriin').forEach(button => {
+            button.addEventListener('click', () => {
+                cartCount+=1;
+                document.querySelector('.cart-count').textContent = cartCount;
+                button.textContent = 'Lisätty Ostoskoriin';
+                button.style.backgroundColor = '#27ae60';
+                setTimeout(() => {
+                    button.textContent = 'Lisää Ostoskoriin';
+                    button.style.backgroundColor = '#2c3e50';
+                }, 1000);
+            });
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.esine').forEach(book => {
+                const title = book.querySelector('.kirjan-nimi').textContent.toLowerCase();
+                const author = book.querySelector('.kirjoittaja').textContent.toLowerCase();
+                const visible = title.includes(searchTerm) || author.includes(searchTerm);
+                book.style.display = visible ? 'flex' : 'none';
+            });
+        });
+
+        // Sorting functionality
+        document.getElementById('sortSelect').addEventListener('change', (e) => {
+            const books = Array.from(document.querySelectorAll('.esine'));
+            const container = document.getElementById('booksContainer');
+            
+            books.sort((a, b) => {
+                if (e.target.value === 'price') {
+                    const priceA = parseFloat(a.querySelector('.hinta').textContent.slice(1));
+                    const priceB = parseFloat(b.querySelector('.hinta').textContent.slice(1));
+                    return priceA - priceB;
+                } else if (e.target.value === 'rating') {
+                    const ratingA = a.querySelector('.arvosana').textContent.split('★').length - 1;
+                    const ratingB = b.querySelector('.arvosana').textContent.split('★').length - 1;
+                    return ratingB - ratingA;
+                } else {
+                    const titleA = a.querySelector('.kirjan-nimi').textContent;
+                    const titleB = b.querySelector('.kirjan-nimi').textContent;
+                    return titleA.localeCompare(titleB);
+                }
+            });
+            
+            books.forEach(book => container.appendChild(book));
+        });
+    </script>
+</body>
+</html>
