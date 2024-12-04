@@ -1,0 +1,3 @@
+maintenance,I need maintenance for my robot ABB. The controller is broken,mr.,Roberto,,Silva,youremail@email.com,+3581112233,04/12,1000
+program_mod,My program picks only one box. Need to change to 3 boxes,ms.,Ana,,do Brasil,youremail@email.com,+3581114455,05/12,8000
+robot_upgrade,My old robot is not working anymore. What are the best options for palletizing?,miss,Clarissa,Teixeira,do Amaral,youremail@email.com,+3581116677,03/12,45000
