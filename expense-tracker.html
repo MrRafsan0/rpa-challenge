@@ -212,7 +212,7 @@
                 const description = document.getElementById('description').value;
                 const amount = parseFloat(document.getElementById('amount').value);
                 const category = document.getElementById('category').value;
-                const date = new Date().toISOString().split('T')[0];
+                const date = document.getElementById('date').value;
 
                 const expense = {
                     id: Date.now(),
